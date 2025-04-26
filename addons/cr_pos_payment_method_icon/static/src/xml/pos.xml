@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="PaymentScreen" t-inherit="point_of_sale.PaymentScreen" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('paymentmethod')]" position="replace">
+            <t t-if="env.pos.config.cr_payment_method_icon">
+                <div class="button paymentmethod" t-on-click="() => this.trigger('new-payment-line', paymentMethod)">
+                    <div style="width:25%;">
+                        <img t-att-src="getImageUrl(paymentMethod)" style="padding-left: 10px;height:50px;width:60px; 16px;padding-top: 10px;" class="fa fa-user"/>
+                    </div>
+                    <div class="payment-name" style="width:75%;text-align: left;">
+                        <t t-esc="paymentMethod.name" />
+                    </div>
+                </div>
+            </t>
+            <t t-else="">
+                <div class="button paymentmethod" t-on-click="() => this.trigger('new-payment-line', paymentMethod)">
+                    <div class="payment-name">
+                        <t t-esc="paymentMethod.name" />
+                    </div>
+                </div>
+            </t>
+        </xpath>
+    </t>
+</templates>

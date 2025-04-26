@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="cr_res_config_settings_inheit_view_form_pos_payment_icon" model="ir.ui.view">
+            <field name="name">cr.res.config.setting.form.inherit.pos.payment.icon</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="point_of_sale.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@id='pos_interface_section']" position="inside">
+                    <div class="col-12 col-lg-6 o_setting_box" title="Payment method icon on pos screen">
+                        <div class="o_setting_left_pane">
+                            <field name="cr_payment_method_icon"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="cr_payment_method_icon" string="Show Payment Method Icon"/>
+                            <div class="text-muted">
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+        <record id="cr_pos_payment_method_inherit_view_form" model="ir.ui.view">
+            <field name="name">cr.pos.payment.method.inherit.view.form</field>
+            <field name="model">pos.payment.method</field>
+            <field name="inherit_id" ref="point_of_sale.pos_payment_method_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('oe_title')]" position="before">
+                    <field name="payment_icon_image" widget="image" class="oe_avatar"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
