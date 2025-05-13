@@ -117,7 +117,7 @@
       </table>
       
       <div class="row" style="font-size:85%;">
-        <div class="col-6">ARRETE LA PRESENTE FACTURE LA SOMME DE <strong><span t-field="o.word_amount_total" /></strong></div>
+        <div class="col-6">ARRETE LA PRESENTE FACTURE LA SOMME DE &ensp;<strong><span t-field="o.word_amount_total" /></strong></div>
         <div class="col-2 offset-2">Montant Total</div>
         <div class="col-2 text-end"><span t-field="o.amount_total"/></div>
       </div>
