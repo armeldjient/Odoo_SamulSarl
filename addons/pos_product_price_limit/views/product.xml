@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : <https://store.webkul.com/license.html/> -->
+<odoo>
+    <data>
+		<record id="product_min_max_inherit_product_template_form" model="ir.ui.view">
+			<field name="name">product.product.min.max.price</field>
+			<field name="model">product.product</field>
+			<field name="inherit_id" ref="product.product_normal_form_view" />
+			<field name="arch" type="xml">
+				<xpath expr="//page[@name='sales']/group[@name='sale']/group[@name='pos']" position="inside">
+					<field name="enable_min_price" />
+					<field name="min_price" attrs="{'invisible': [('enable_min_price','=',False)],'required':[('enable_min_price','=',False)]}"/>
+					<field name="enable_max_price"/>
+					<field name="max_price" attrs="{'invisible': [('enable_max_price','=',False)],'required':[('enable_max_price','=',False)]}"/>
+				</xpath>
+			</field>
+		</record>
+	</data>
+</odoo>

@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : <https://store.webkul.com/license.html/> -->
+<odoo>
+
+    <record id="wk_min_max_category_id" model="pos.category">
+        <field name="name">Min/Max Products</field>
+    </record>
+
+    <record model="pos.config" id="point_of_sale.pos_config_main">
+        <field name="start_category">True</field>
+        <field name="is_restrict_min_max_price">True</field>
+        <field name="iface_start_categ_id" ref="pos_product_price_limit.wk_min_max_category_id"></field>
+    </record>
+
+    <record id="wk_pizza_min_max" model="product.product">
+        <field name="name">Pizza</field>
+        <field name="standard_price">40</field>
+        <field name="list_price">50</field>
+        <field name="available_in_pos">True</field>
+        <field name="enable_min_price">True</field>
+        <field name="min_price">20</field>
+        <field name="enable_max_price">True</field>
+        <field name="max_price">60</field>
+        <field name="pos_categ_id" ref="pos_product_price_limit.wk_min_max_category_id"/>
+        <field name="taxes_id" eval="[(6,0,[])]"/>
+    </record>
+
+    <record id="wk_burger_min_max_2" model="product.product">
+        <field name="name">Burger</field>
+        <field name="standard_price">20</field>
+        <field name="list_price">30</field>
+        <field name="available_in_pos">True</field>
+        <field name="enable_min_price">False</field>
+        <field name="enable_max_price">True</field>
+        <field name="max_price">50</field>
+        <field name="pos_categ_id" ref="pos_product_price_limit.wk_min_max_category_id"/>
+        <field name="taxes_id" eval="[(6,0,[])]"/>
+    </record>
+    
+</odoo>

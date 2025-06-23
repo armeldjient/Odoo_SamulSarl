@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : <https://store.webkul.com/license.html/> -->
+<templates id="template" xml:space="preserve">
+    <t t-name="MinMxQtyPopupWidget" owl="1">
+        <div role="dialog" class="modal-dialog">
+            <div class="popup popup-text min_max_popup">
+                <header class="title wk_title_min_max">
+                    <t t-if="props.sel_line.full_product_name">
+                        <t t-esc="props.sel_line.full_product_name"/>
+                    </t>
+                    <t t-else="">
+                        <t t-esc="props.product.display_name"/>
+                    </t>
+                </header>
+                <main class='body'>
+                    <p class="wk_min_max_text">
+                        Enter a price for the product with 
+                        <t t-if="props.product.enable_min_price and props.product.min_price >0">
+                            minimum price :
+                            <t t-esc="env.pos.format_currency(props.product.min_price)"/>
+                        </t>
+                        <t t-if="props.product.enable_min_price and props.product.min_price >0 and props.product.enable_max_price and props.product.max_price >0">
+                            and 
+                        </t>
+                        <t t-if="props.product.enable_max_price and props.product.max_price >0">
+                            maximum price :
+                            <t t-esc="env.pos.format_currency(props.product.max_price)"/>
+                        </t>
+                    </p>
+                    <input type="number" value="0.00" step="0.01" min="0" id="wk_price_val"/>
+                </main>
+                <footer> 
+                    <t t-if="props.product.enable_min_price">
+                        <p class="min_error">
+                            Product Price cannot be less than 
+                            <t t-esc="env.pos.format_currency(props.product.min_price)"/>. 
+                        </p>
+                    </t>
+                    <t t-if="props.product.enable_max_price and props.product.max_price >0">
+                        <p class="max_error">
+                            Product Price cannot be more than 
+                            <t t-esc="env.pos.format_currency(props.product.max_price)"/>. 
+                        </p>
+                    </t>
+                    <p class="lst_price_error_min">
+                        Product Price cannot be more than it's Sale price :
+                        <t t-esc="env.pos.format_currency(props.product.lst_price)"/>. 
+                    </p>
+                    <p class="lst_price_error_max">
+                        Product Price cannot be less than its Sale price :
+                        <t t-esc="env.pos.format_currency(props.product.lst_price)"/>. 
+                    </p>
+                    <div class="button cancel wk_cancel wk_min_max_button" t-on-click="click_wk_cancel">
+                        Cancel
+                    </div>
+                    <div class="button wk_proceed wk_min_max_button" t-on-click="click_proceed">
+                        Proceed
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </t>
+</templates>
